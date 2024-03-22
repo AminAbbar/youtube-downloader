@@ -3,12 +3,15 @@
 export declare global {
   interface Window {
     api: {
-      getVideoInfo: unknown
+      getVideoInfo(): unknown
     }
     titleBarOptions: {
       close(): void
       maximize(): void
       minimize(): void
+    }
+    updater: {
+      updateInstall(): void
     }
     ipcRenderer: {
       send(channel: string, data: unknown): void

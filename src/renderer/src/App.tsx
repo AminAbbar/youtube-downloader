@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import UpdateModal from './components/UpdateModal'
 import NavTitle from './components/NavTitle'
+import AnimatedRoutes from './components/AnimatedRoutes'
 function App(): JSX.Element {
   const [showModal, setShowModal] = useState(false)
   useEffect(() => {
@@ -35,6 +36,7 @@ function App(): JSX.Element {
         {showModal && <UpdateModal modal={{ setShowModal }} />}
       </AnimatePresence>
       <NavTitle />
+      <AnimatedRoutes />
     </>
   )
 }

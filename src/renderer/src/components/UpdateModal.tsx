@@ -7,7 +7,6 @@ function UpdateModal({
 }): React.JSX.Element {
   function handleInstall(): void {
     setShowModal(false)
-    //@ts-ignore known
     window.updater.updateInstall()
   }
   return (
