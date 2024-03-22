@@ -20,46 +20,41 @@ const ffmpeg = require('fluent-ffmpeg');
 
     
     (async () => {
-        const videoUrl = 'https://www.youtube.com/watch?v=Yox5UOc7Gms&t=282s';
-    let info = await cli.getInfo(videoUrl);
-    let tags = [160, 133, 134, 135, 136, 299]; // Available itags
-    let selectedFormat = null;
-    console.log(info.formats)
 
-    for (let tag of tags) {
-        let format = info.formats.find(format => format.itag === tag);
-        if (format) {
-            selectedFormat = format;
-            break;
-        }
-    }
-
-    if (selectedFormat) {
-        console.log('Selected Format:', selectedFormat);
+    async function downloadVideo(url , videoQ ){
         const videoFile = 'video.mp4';
         const audioFile = 'audio.mp3';
 
 
         try {
-            await new Promise((resolve, reject) => {
-                cli(videoUrl, { quality: selectedFormat.itag })
+            tasks = []
+            const videoTask = new Promise((resolve, reject) => {
+                cli(url, { quality: videoQ })
                     .pipe(fs.createWriteStream(videoFile))
                     .on('finish', () => {
                         console.log('Video downloaded successfully!');
                         resolve();
                     })
                     .on('error', reject);
-            });
-
-            await new Promise((resolve, reject) => {
-                cli(videoUrl, { quality: '140' })
+            })
+            const audioTask = new Promise((resolve, reject) => {
+                cli(url, { quality: '140' })
                     .pipe(fs.createWriteStream(audioFile))
                     .on('finish', () => {
                         console.log('Audio downloaded successfully!');
                         resolve();
                     })
                     .on('error', reject);
-            });
+            })
+
+
+            tasks.push(videoTask )
+            tasks.push(audioTask )
+        
+            await Promise.all(tasks);
+           
+
+          
 
             await new Promise((resolve, reject) => {
                 ffmpeg()
@@ -82,6 +77,23 @@ const ffmpeg = require('fluent-ffmpeg');
         } catch (error) {
             console.error('Error:', error);
         }
+    }
+    
+    
+    
+    
+    const videoUrl = 'https://www.youtube.com/watch?v=OwjXaxs4woo';
+    let info = await cli.getInfo(videoUrl);
+    let tags = [160, 133, 134, 135, 136, 299]; // Available itags
+    let tag = 299;
+    if(!tags.includes(tag))return console.log("invalid format");
+
+    let format = info.formats.find(format => format.itag === tag);
+    
+
+    if (format) {
+        console.log('Selected Format:', format);
+        await downloadVideo(videoUrl , format.itag)
     } else {
         console.log('No matching format found for the specified tags.');
     }
