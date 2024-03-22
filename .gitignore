@@ -3,3 +3,6 @@ dist
 out
 .DS_Store
 *.log*
+ffprobe.exe
+ffplay.exe
+ffmpeg.exe
