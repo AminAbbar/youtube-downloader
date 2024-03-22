@@ -1,3 +1,7 @@
-provider: generic
-url: https://example.com/auto-updates
+provider: github
+vPrefixedTagName : true
+host : github.com
+owner: AminAbbar
+repo : youtube-downloader
+releaseType: draft
 updaterCacheDirName: youtube-downloader-updater

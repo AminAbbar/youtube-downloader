@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: youtube-downloader
+productName: youtube downloader
 directories:
   buildResources: build
 files:
@@ -12,7 +12,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: youtube-downloader
+  executableName: youtube downloader
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
@@ -39,7 +39,11 @@ appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
 publish:
-  provider: generic
-  url: https://example.com/auto-updates
+  provider: github
+  vPrefixedTagName : true
+  host : github.com
+  owner: AminAbbar
+  repo : youtube-downloader
+  releaseType: draft
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/

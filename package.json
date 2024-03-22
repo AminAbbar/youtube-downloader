@@ -5,7 +5,7 @@
   "main": "./out/main/index.js",
   "author": "aminabbar.help",
   "homepage": "https://electron-vite.org",
-  "repository": "https://github.com/AminAbbar/academiaUpdater",
+  "repository": "https://github.com/AminAbbar/youtube-downloader",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
@@ -27,6 +27,8 @@
     "electron-log": "^5.1.2",
     "electron-updater": "^6.1.7",
     "fluent-ffmpeg": "^2.1.2",
+    "framer-motion": "^11.0.20",
+    "react-toastify": "^10.0.5",
     "ytdl-core": "^4.11.5"
   },
   "devDependencies": {

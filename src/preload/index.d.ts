@@ -1,5 +1,14 @@
-declare global {
+/// <reference types="vite/client" />
+
+export declare global {
   interface Window {
-    api: unknown
+    api: {
+      getVideoInfo: unknown
+    }
+    ipcRenderer: {
+      send(channel: string, data: unknown): void
+      receive(channel: string, func: unknown): void
+      removeAllListeners(channel: string): void
+    }
   }
 }
