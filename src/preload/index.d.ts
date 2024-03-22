@@ -5,6 +5,11 @@ export declare global {
     api: {
       getVideoInfo: unknown
     }
+    titleBarOptions: {
+      close(): void
+      maximize(): void
+      minimize(): void
+    }
     ipcRenderer: {
       send(channel: string, data: unknown): void
       receive(channel: string, func: unknown): void

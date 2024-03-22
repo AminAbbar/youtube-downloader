@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify'
 import { AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import UpdateModal from './components/UpdateModal'
+import NavTitle from './components/NavTitle'
 function App(): JSX.Element {
   const [showModal, setShowModal] = useState(false)
   useEffect(() => {
@@ -33,6 +34,7 @@ function App(): JSX.Element {
       <AnimatePresence mode="wait">
         {showModal && <UpdateModal modal={{ setShowModal }} />}
       </AnimatePresence>
+      <NavTitle />
     </>
   )
 }
